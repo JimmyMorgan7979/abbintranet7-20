@@ -1,0 +1,96 @@
+<link rel='stylesheet' href='/static/css/placeholder.css'>
+<div class="row justify-content-center ">  
+    <div class="text-center h5">
+        Enter Information
+    </div> 
+</div>
+
+<div class="row">
+    <div class="col">
+        <form action="partAdd" method="POST">           
+            <div class="row justify-content-center">
+                <div class="col-sm-5 bg-warning">
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="stockedAS">Stocked As</label>
+                        <input class="form-control" type="text" name="stockedAS" placeholder="Part Number" oninput="this.value = this.value.toUpperCase()"/>
+                    </div>          
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="description1">Description</label>
+                        <input class="form-control" type="text" name="description1" placeholder="Description of Part"/>
+                    </div> 
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="description2">Additional Description</label>
+                        <input class="form-control" type="text" name="description2" placeholder="Additional Description" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="sapNumber">SAP Number</label>
+                        <input class="form-control" type="text" name="sapNumber" placeholder="SAP Number" oninput="this.value = this.value.toUpperCase()"/>
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="manufacturer">Manufacturer</label>
+                        <input class="form-control" type="text" name="manufacturer" placeholder="Manufacturer" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="location1">Location 1</label>
+                        <input class="form-control" type="text" name="location1" placeholder="Location 1" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="location2">Location 2</label>
+                        <input class="form-control" type="text" name="location2" placeholder="Location 2" />
+                    </div>
+                </div>
+
+                <div class="col-sm-5 bg-warning">
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="location3">Location 3</label>
+                        <input class="form-control" type="text" name="location3" placeholder="Location 3" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="drawer">Drawer</label>
+                        <input class="form-control" type="text" name="drawer" placeholder="Drawer" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="cross1">Cross 1</label>
+                        <input class="form-control" type="text" name="cross1" placeholder="Cross 1" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="cross2">Cross 2</label>
+                        <input class="form-control" type="text" name="cross2" placeholder="Cross 2" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="cross3">Cross 3</label>
+                        <input class="form-control" type="text" name="cross3" placeholder="Cross 3" />
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="price">List Price</label>
+                        <input class="form-control" type="number" min="0" step=".01" name="price" placeholder="List Price" onchange = "myfunction()"/>
+                    </div>
+                    <div class="text-left pb-2 input-group-sm">
+                        <label for="notes">Notes</label>
+                        <input class="form-control"  name="notes" placeholder="Notes"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center py-1">
+                <div class="col-2 pt-4 text-center">
+                    <button class="btn btn-danger" type="submit">Add to Database</button>
+                </div>
+            </div>
+            <input id = "updatepricedate" type="hidden" name="priceUpdated" />
+        </form>
+        <div class="row justify-content-center py-1">
+            <div class="col text-center p-2">
+                <a class="btn btn-secondary" href="/partHome">Go Back</a>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+<script>
+    function myfunction(){
+        document.getElementById("updatepricedate").value = new Date().toLocaleString();
+    }
+</script>
+

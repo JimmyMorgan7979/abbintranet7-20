@@ -1,0 +1,112 @@
+
+<div class="row justify-content-center">
+    <a type='button' class="btn btn-warning mb-3" href="/mdb">Go Back</a>
+</div>
+    
+<!--information row-->
+<div class="row justify-content-center">
+    <!--information details col-->
+    <div class="col-sm-9 py-2 mdbForm">
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Model Number:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.modelnumber) { %> <%= docs.modelnumber %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Description:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.description) { %> <%= docs.description %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Test Procedure Number:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.procedure_number) { %> <%= docs.procedure_number %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Current Revision:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.latest_procedure_revision) { %> <%= docs.latest_procedure_revision %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Link to Procedure:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.link) { %> 
+                    <a href="/static/testProcedures/<%= fixlink %>.pdf"><%= fixlink %>.pdf</a> 
+                <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Farm Out?:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.farm_out) { %> <%= docs.farm_out %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Conformal Coated?:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.conformal_coated) { %> <%= docs.conformal_coated %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Test Fixture Id:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs. test_fixture_number) { %> <%= docs. test_fixture_number %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Test Fixture Description:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.test_fixture_description) { %> <%= docs.test_fixture_description %> <% } %>
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class='h6'>Text Fixture Notes:</p>
+            </div>
+            <div class="col-9">
+                <% if(docs.test_fixture_notes) { %> <%= docs.test_fixture_notes %> <% } %>
+            </div>   
+        </div>
+    </div> 
+    <!--photo col-->
+    <div class="col-sm-3 mdbForm">
+        <% if(docs.test_fixture_photo_link) { %><img src="<%= fixturePhoto %>" class="img-fluid">  <% } %>
+    </div>
+</div>
+
+ <!--notes section-->
+    <div class="row justify-content-left mdbForm">
+        <p class="h6 ml-3">Notes:
+            <% if(docs.notes) { %> <%= docs.notes %> <% } %>
+        </p>
+    </div>
+
+    <div class="row justify-content-left mdbForm">
+        <p class="h6 ml-3">Notes 2:
+            <% if(docs.notes2) { %> <%= docs.notes2 %> <% } %>
+        </p>
+    </div>
+<!--notes section end-->
+

@@ -1,0 +1,137 @@
+<div class="row mt-3">
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+    <div class="col-sm-6">
+        <div class="text-center mb-4 h5">Search results for "<%=search.searchWord%>"
+            <ol class="list-unstyled">
+                <% docs.forEach(function(item){%>
+                    <li class="my-3 text-left">
+                        <% if (item.CombinedModel) { %>
+                            <strong class="pr-2">Combined Model: </strong> <%= item.CombinedModel %><br>
+                        <% } %>
+
+                        <% if (item.BoardName) { %>
+                            <strong class="pr-2">Board Name: </strong> <%= item.BoardName %><br>
+                        <% } %>
+
+                        <% if (item.MajorRev) { %>
+                            <strong class="pr-2">Major Revision: </strong> <%= item.MajorRev %><br>
+                        <% } %>
+
+                        <% if (item.MinorRev) { %>
+                            <strong class="pr-2">Minor Revision: </strong> <%= item.MinorRev%><br>
+                        <% } %>
+
+                        <% if (item.PLESA == "USE") { %>
+                            <div><strong class="pr-2">PL/ESA: </strong> <strong class="text-success"><%= item.PLESA %></strong></div>
+                        <% } else if(item.PLESA == "MOD") { %>
+                            <div><strong class="pr-2">PL/ESA: </strong> <strong class="text-warning"><%= item.PLESA %></strong></div>
+                        <% } else if(item.PLESA == "SCP") { %>
+                            <div><strong class="pr-2">PL/ESA: </strong> <strong class="text-danger"><%= item.PLESA %></strong></div>
+                        <% } else if(item.PLESA) { %>
+                            <div><strong class="pr-2">PL/ESA: </strong> <strong><%= item.PLESA %></strong></div>
+                        <% } %>
+
+                        <% if (item.RPO == "USE") { %>
+                            <div><strong class="pr-2">RPO: </strong> <strong class="text-success"><%= item.RPO %></strong></div>
+                        <% } else if(item.RPO == "MOD") { %>
+                            <div><strong class="pr-2">RPO: </strong> <strong class="text-warning"><%= item.RPO %></strong></div>
+                        <% } else if(item.RPO == "SCP") { %>
+                            <div><strong class="pr-2">RPO: </strong> <strong class="text-danger"><%= item.RPO %></strong></div>
+                        <% } else if(item.RPO) { %>
+                            <div><strong class="pr-2">RPO: </strong> <strong><%= item.RPO %></strong></div>
+                        <% } %>
+
+                        <% if (item.STOCK == "USE") { %>
+                            <div><strong class="pr-2">STOCK: </strong> <strong class="text-success"><%= item.STOCK %></strong></div>
+                        <% } else if(item.STOCK == "MOD") { %>
+                            <div><strong class="pr-2">STOCK: </strong> <strong class="text-warning"><%= item.STOCK %></strong></div>
+                        <% } else if(item.STOCK == "SCP") { %>
+                            <div><strong class="pr-2">STOCK: </strong> <strong class="text-danger"><%= item.STOCK %></strong></div>
+                        <% } else if(item.STOCK) { %>
+                            <div><strong class="pr-2">STOCK: </strong> <strong><%= item.STOCK %></strong></div>
+                        <% } %>
+
+                        <% if (item.ASM == "USE") { %>
+                            <div><strong class="pr-2">ASM: </strong> <strong class="text-success"><%= item.ASM %></strong></div>
+                        <% } else if(item.ASM == "MOD") { %>
+                            <div><strong class="pr-2">ASM: </strong> <strong class="text-warning"><%= item.ASM %></strong></div>
+                        <% } else if(item.ASM == "SCP") { %>
+                            <div><strong class="pr-2">ASM: </strong> <strong class="text-danger"><%= item.ASM %></strong></div>
+                        <% } else if(item.ASM) { %>
+                            <div><strong class="pr-2">ASM: </strong> <strong><%= item.ASM %></strong></div>
+                        <% } %>
+
+                        <% if (item.ASSMTEST == "USE") { %>
+                            <div><strong class="pr-2">ASSM/TEST: </strong> <strong class="text-success"><%= item.ASSMTEST %></strong></div>
+                        <% } else if(item.ASSMTEST == "MOD") { %>
+                            <div><strong class="pr-2">ASSM/TEST: </strong> <strong class="text-warning"><%= item.ASSMTEST %></strong></div>
+                        <% } else if(item.ASSMTEST == "SCP") { %>
+                            <div><strong class="pr-2">ASSM/TEST: </strong> <strong class="text-danger"><%= item.ASSMTEST %></strong></div>
+                        <% } else if(item.ASSMTEST) { %>
+                            <div><strong class="pr-2">ASSM/TEST: </strong> <strong><%= item.ASSMTEST %></strong></div>
+                        <% } %>
+                       
+                        <% if (item.ASSMUNTST == "USE") { %>
+                            <div><strong class="pr-2">ASSM/UNTST: </strong> <strong class="text-success"><%= item.ASSMUNTST %></strong></div>
+                        <% } else if(item.ASSMUNTST == "MOD") { %>
+                            <div><strong class="pr-2">ASSM/UNTST: </strong> <strong class="text-warning"><%= item.ASSMUNTST %></strong></div>
+                        <% } else if(item.ASSMUNTST == "SCP") { %>
+                            <div><strong class="pr-2">ASSM/UNTST: </strong> <strong class="text-danger"><%= item.ASSMUNTST %></strong></div>
+                        <% } else if(item.ASSMUNTST) { %>
+                            <div><strong class="pr-2">ASSM/UNTST: </strong> <strong><%= item.ASSMUNTST %></strong></div>
+                        <% } %>            
+                        
+                        <% if (item.FABUNASM == "USE") { %>
+                            <div><strong class="pr-2">FAB/UNASM: </strong> <strong class="text-success"><%= item.FABUNASM %></strong></div>
+                        <% } else if(item.FABUNASM == "MOD") { %>
+                            <div><strong class="pr-2">FAB/UNASM: </strong> <strong class="text-warning"><%= item.FABUNASM %></strong></div>
+                        <% } else if(item.FABUNASM == "SCP") { %>
+                            <div><strong class="pr-2">FAB/UNASM: </strong> <strong class="text-danger"><%= item.FABUNASM %></strong></div>
+                        <% } else if(item.FABUNASM) { %>
+                            <div><strong class="pr-2">FAB/UNASM: </strong> <strong><%= item.FABUNASM %></strong></div>
+                        <% } %>
+                       
+                        <% if (item.FLD == "USE") { %>
+                            <div><strong class="pr-2">FLD: </strong> <strong class="text-success"><%= item.FLD %></strong></div>
+                        <% } else if(item.FLD == "MOD") { %>
+                            <div><strong class="pr-2">FLD: </strong> <strong class="text-warning"><%= item.FLD %></strong></div>
+                        <% } else if(item.FLD == "SCP") { %>
+                            <div><strong class="pr-2">FLD: </strong> <strong class="text-danger"><%= item.FLD %></strong></div>
+                        <% } else if(item.FLD) { %>
+                            <div><strong class="pr-2">FLD: </strong> <strong><%= item.FLD %></strong></div>
+                        <% } %>
+                               
+                        <% if (item.RR == "USE") { %>
+                            <div><strong class="pr-2">R&R: </strong> <strong class="text-success"><%= item.RR %></strong></div>
+                        <% } else if(item.RR == "MOD") { %>
+                            <div><strong class="pr-2">R&R: </strong> <strong class="text-warning"><%= item.RR %></strong></div>
+                        <% } else if(item.RR == "SCP") { %>
+                            <div><strong class="pr-2">R&R: </strong> <strong class="text-danger"><%= item.RR %></strong></div>
+                        <% } else if(item.RR) { %>
+                            <div><strong class="pr-2">R&R: </strong> <strong><%= item.RR %></strong></div>
+                        <% } %>
+       
+                    </li>
+                <% }); %>
+            </ol>
+        <div>
+            <a class="btn btn-secondary mt-4 text-white" href="/orangeBookHome">Go Back to Orange Book Home</a>
+        </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

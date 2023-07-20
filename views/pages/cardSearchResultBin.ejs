@@ -1,0 +1,51 @@
+<div class="row mt-3">
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+    <div class="col-sm-6">
+        <div class="text-center mb-4 h5">Search results for bin "<%= search.searchWord %>"
+            <ol class="list-unstyled">
+                <form action="/cardBinMove" method="POST"  class="m-2"> 
+                    <label>Move bin to New Location</label><br>
+                    New Location: <input type="text" autofocus size="sm" name = "newBinLocation" value = <%= response[0].binLocation %> ></input>
+                    <!-- <% let chosen=[]; %>
+                    <% response.forEach(function(item){chosen.push(item._id)})%> -->
+                    <input type="hidden" name = 'bin' value = <%= search.searchWord %>>
+                    <!-- <input type="hidden" name = 'selected' value = <%= chosen %>> -->
+                    <button class="btn btn-warning m-2" type='submit'>Move</button>
+                </form>
+                <% response.forEach(function(item){%>
+                    <li class="my-3 text-left">
+                        <form action="POST">
+                            <strong class="pr-2">Part Number:</strong> <%= item.partNumber %> <br>
+                            <% if (item.serialNumber) { %>
+                                <strong class="pr-2">Serial Number: </strong> <%= item.serialNumber %><br>
+                            <% } %>
+                            <% if (item.binNumber) { %>
+                                <strong class="pr-2">Bin Number: </strong> <%= item.binNumber %><br>
+                            <% } %>
+                            <% if (item.binLocation) { %>
+                                <strong class="pr-2">Bin Location: </strong> <%= item.binLocation %><br>
+                            <% } %>
+                            <% if (item.remanPrice) { %>
+                                <strong class="pr-2">Reman Price: </strong> <%= item.remanPrice %><br>
+                            <% } %>
+                            <% if (item.exahangePrice) { %>
+                                <strong class="pr-2">Exchange Price: </strong> <%= item.exahangePrice %><br>
+                            <% } %>
+                            <% if (item.dateReceived) { %>
+                                <strong class="pr-2">Date Received: </strong> <%= item.dateReceived %><br>
+                            <% } %>
+                
+                            <a class="btn btn-danger pt-2 mt-2"  id="deletebutton" href="/del/<%=item._id%>/remove">Delete Board</a>
+                        </form>  
+                    </li>
+                <% }); %>
+            </ol>
+            <a class="btn btn-secondary mt-4" href="/">Go Back to Search Page</a>
+        </div>
+    </div>
+    <div class="col-sm"> 
+        <!--Spacing--> 
+    </div>
+</div>

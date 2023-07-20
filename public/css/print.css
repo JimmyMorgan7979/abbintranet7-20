@@ -1,0 +1,15 @@
+@font-face {
+    font-family: barcodefont;
+    src: url('../fonts/39.ttf');
+}
+.bcode {
+    font-family: barcodefont;   
+    font-size:35px;
+}
+@font-face{
+    font-family:abb;
+    src: url('../fonts/ABBvoice_Rg.ttf');
+}
+.abb {
+    font-family:abb;
+}

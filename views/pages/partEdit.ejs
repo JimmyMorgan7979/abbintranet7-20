@@ -1,0 +1,96 @@
+<link rel='stylesheet' href='/static/css/placeholder.css'>
+<div class="row justify-content-center ">  
+    <div class="text-center h5">
+        Search results for "<%=search.searchWord%>"
+    </div> 
+</div>
+
+<% response.forEach(function(item){%>               
+    <div class="row">
+        <div class="col">
+            <form action="partEdit/<%=item._id%>" method="POST" class="py-2"> 
+                <div class="row justify-content-center">
+                    <div class="col-sm-5 bg-warning">
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="stockedAS">Stocked As</label>
+                        <input class="form-control" type="text" name="stockedAS" placeholder="Part Number" value='<%=item.stockedAS%>' oninput="this.value = this.value.toUpperCase()" />
+                        </div>          
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="description1">Description</label>
+                        <input class="form-control" type="text" name="description1" placeholder="Description of Part" value='<%=item.description1%>'/>
+                        </div> 
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="description2">Additional Description</label>
+                        <input class="form-control" type="text" name="description2" placeholder="Additional Description" value='<%=item.description2%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="sapNumber">SAP Number</label>
+                        <input class="form-control" type="text" name="sapNumber" placeholder="SAP Number" value='<%=item.sapNumber%>' oninput="this.value = this.value.toUpperCase()">
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="manufacturer">Manufacturer</label>
+                        <input class="form-control" type="text" name="manufacturer" placeholder="Manufacturer" value='<%=item.manufacturer%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="location1">Location 1</label>
+                        <input class="form-control" type="text" name="location1" placeholder="Location 1" value='<%=item.location1%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="location2">Location 2</label>
+                        <input class="form-control" type="text" name="location2" placeholder="Location 2" value='<%=item.location2%>'/>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-5 bg-warning">
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="location3">Location 3</label>
+                        <input class="form-control" type="text" name="location3" placeholder="Location 3" value='<%=item.location3%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="drawer">Drawer</label>
+                        <input class="form-control" type="text" name="drawer" placeholder="Drawer" value='<%=item.drawer%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="cross1">Cross 1</label>
+                        <input class="form-control" type="text" name="cross1" placeholder="Cross 1" value='<%=item.cross1%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="cross2">Cross 2</label>
+                        <input class="form-control" type="text" name="cross2" placeholder="Cross 2" value='<%=item.cross2%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="cross3">Cross 3</label>
+                        <input class="form-control" type="text" name="cross3" placeholder="Cross 3" value='<%=item.cross3%>'/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="price">List Price</label>
+                        <input class="form-control" type="number" min="0" step=".01" name="price" placeholder="List Price" value='<%=item.price%>' onchange = "myfunction()"/>
+                        </div>
+                        <div class="text-left pb-2 input-group-sm">
+                        <label for="notes">Notes</label>
+                        <input class="form-control"  name="notes" placeholder="Notes" value='<%=item.notes%>'/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center py-1">
+                    <div class="col-3 pt-4">
+                        <button class="btn btn-primary" type="submit">Submit Changes</button>
+                        <a class="btn btn-danger" id="deletebutton" href="/partHome/delpart/<%=item._id%>/delete">Delete Part</a>
+                    </div>
+                </div>
+                <input id = "updatepricedate" type="hidden" name="priceUpdated" value = '<%=item.priceUpdated%>' />
+            </form>
+        </div>
+    </div>
+<% }); %>   
+
+
+<div class="row justify-content-center">
+    <a class="btn btn-secondary m-2" href="/partHome">Go Back to Part Search</a> 
+</div>
+
+<script>
+    function myfunction(){
+        document.getElementById("updatepricedate").value = new Date().toLocaleString();
+    }
+</script>

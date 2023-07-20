@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset=utf-8>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel='stylesheet' href='/static/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='/static/css/print.css'>
+        <link rel='stylesheet' href='/static/css/custom.css'>
+        <link rel='icon' type='image/png' href='/static/photos/abb-logo-square.png'>
+        <meta type="text/css" media="print">
+    <title>
+        ABB Louisville - MOSE
+    </title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row mt-2">
+                <div class="col-sm-5 h5">
+                    <img class="img img-fluid mr-3" src="/static/photos/abb.png">
+                    Louisville
+                </div>
+                <div class="col-sm text-right">
+                    Louisville Service Center <br>
+                    240 Production Court <br>
+                    Louisville, KY 40299 <br>
+                    P: (502)-493-8000<br>
+                    F: (502)-493-0326<br>
+                    <a href="mailto: US-CustomerService.Louisville@abb.com?subject=Question from Website">Email Us</a>
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-sm-12 text-center">
+                    <a class="mx-2 btn" href="/">Legacy Search</a>
+                    <a class="mx-2 btn" href="/partHome">New Part Search</a>
+                    <a class="mx-2 btn" href="/mdb">Models Database</a>
+                    <a class="mx-2 btn bg-warning" href="/orangeBookHome">Orange Book</a>
+                    <a class="mx-2 btn" href="http://catalog.industrialsolutions.abb.com/ecatalog/">Board Repair (E-Catalog)</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm text-center border bg-secondary">
+                    <div class="text-left text-white px-1">
+                        <%= banner %>
+                    </div>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-sm">
+                   <!--Spacing--> 
+                </div>
+                <div class="col-sm-6 mt-3 text-center h4 text-success bg-light">
+                    <%= message %>
+                </div>
+                <div class="col-sm">
+                     <!--Spacing--> 
+                </div>
+            </div>       
+            <div>
+                <%- body %>
+            </div>
+        </div>
+    </body>
+</html>

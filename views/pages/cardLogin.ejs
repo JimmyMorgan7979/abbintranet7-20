@@ -1,0 +1,67 @@
+<div class="row mt-3">
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+    <div class="col-sm-6">
+        <div class="card card-body text-center">
+            <h1 class="text-center mb-3">Login</h1>
+            <ol class="list-unstyled">
+              <% if(locals.errors){ %> <% errors.forEach(function(error) { %>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <%= error.msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <% }); %> <% } %> 
+              <% if(success_msg != ''){ %>
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%= success_msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <% } %> 
+              <% if(error_msg != ''){ %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error_msg %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <% } %> 
+              <% if(error != ''){ %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= error %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <% } %>
+            </ol>
+            <form action="cardLogin/cardLogin" method="POST">
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"/>
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label>
+					<input type="password" id="password" name="password" class="form-control" placeholder="Enter Password"/>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">Login</button>
+            </form>
+            <div class="col-sm p-2">
+              No Account? <a href="cardLogin/userRegister">Register</a>
+            </div>
+            <div class="col-sm">
+              <a href="cardLogin/userEdit">Change Password</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+</div>
+<script src="static/scripts/jquery-3.3.1.slim.min.js"></script>
+<script src="static/scripts/popper.min.js"></script>
+<script src="static/scripts/bootstrap.min.js"></script>   
