@@ -69,13 +69,10 @@ app.use(function(req, res, next) {
 
 //route files
 app.use('/', require('./routes/card.js'))
-//app.use('/cardLogin', require('./routes/cardUser.js'))
 app.use('/partHome', require('./routes/part.js'))
-//app.use('/partLogin', require('./routes/partUser.js'))
-//app.use('/partRequest', require('./routes/reqPart.js'))
 app.use('/mdb', require('./routes/mdb.js'))
 app.use('/orangeBookHome', require('./routes/orangeBook.js'))
-// app.use('/jeff', require('./routes/jeff.js'))
+
 
 
 //Port that the app sends to
