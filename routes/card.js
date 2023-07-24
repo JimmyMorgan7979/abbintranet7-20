@@ -23,30 +23,7 @@ router.get('/', async function(req,res){
     }
     } catch (error){console.log(error)}
 })
-//#############################################################################################3
-//Route for search by Model Number results to be displayed
- //router.post('/cardSearchResult', function(req,res){
-//    var search = req.body
-//     Card.find({partNumber: {$regex: search.searchWord, $options: 'i'}},
-//         function(err,response){
-//             res.render('pages/cardSearchResult', {banner: 'Search Results', search,response, message:''})
-//         }).limit(20)
-// })
-
-// //Route for search by serial number
-// // router.get('/cardSearchSN', function(req,res){
-// // 	res.render('pages/cardSearchSN', {banner: 'Search By Serial Number', message:''})
-// // })
-
-// //Route for search by Serial Number results to be displayed
-// router.post('/cardSearchResultSN', function(req,res){
-//     var search = req.body
-//      Card.find({serialNumber: {$regex: search.searchWord, $options: 'i'}},
-//          function(err,response){
-//              res.render('pages/cardSearchResult', {banner: 'Search Results', search,response, message:''})
-//          }).limit(20)
-//  })
- //###################################################################################################
+//Route for search by Model Number results  to be displayed
  router.post('/cardSearchResult', function(req,res){
     var search = req.body
     Card.find({partNumber: {$regex: search.searchWord, $options: 'i'}},
@@ -82,7 +59,7 @@ router.post('/cardSearchResultBin', function(req,res){
 router.get('/cardAdd', function(req,res){
     res.render('pages/cardAdd', {banner: 'Add To Legacy',message:''})
 })
-
+//Route for cards to be added to database
 router.post('/cardAdd', function(req,res){
     var today = new Date()
     var date = today.getMonth()+1+'-'+(today.getDate())+'-'+today.getFullYear()
