@@ -8,20 +8,6 @@ const RemovedCard = require('../models/RemovedCard')
 const User = require('../models/User')
 
 // Route for home page "Legacy Search"
-// router.get('/', function(req,res){
-//     let ip = req.ip
-//     let date = new Date().toLocaleString();
-//     if (ip == `::ffff:`+address){
-//         console.log("your special")
-//         res.render('pages/cardHomeWithAdmin',{banner: "Legacy Search with Admin", message: ""})
-//     }else {
-//         console.log(`Legacy -> By ${ip} at ${date}`)
-//         res.render('pages/cardHome',{banner: "Legacy Search", message: ""})
-//     }
-//     console.log(`Legacy -> By ${ip} at ${date}`)
-// })
-
-//TESTROUTETESTROUTETESTROUTE
 router.get('/', async function(req,res){
     try {
     let userip = req.ip
@@ -37,30 +23,47 @@ router.get('/', async function(req,res){
     }
     } catch (error){console.log(error)}
 })
-
+//#############################################################################################3
 //Route for search by Model Number results to be displayed
-router.post('/cardSearchResult', function(req,res){
-   var search = req.body
-    Card.find({partNumber: {$regex: search.searchWord, $options: 'i'}},
-        function(err,response){
-            res.render('pages/cardSearchResult', {banner: 'Search Results', search,response, message:''})
-        }).limit(20)
-})
+ //router.post('/cardSearchResult', function(req,res){
+//    var search = req.body
+//     Card.find({partNumber: {$regex: search.searchWord, $options: 'i'}},
+//         function(err,response){
+//             res.render('pages/cardSearchResult', {banner: 'Search Results', search,response, message:''})
+//         }).limit(20)
+// })
 
-//Route for search by serial number
-router.get('/cardSearchSN', function(req,res){
-	res.render('pages/cardSearchSN', {banner: 'Search By Serial Number', message:''})
-})
+// //Route for search by serial number
+// // router.get('/cardSearchSN', function(req,res){
+// // 	res.render('pages/cardSearchSN', {banner: 'Search By Serial Number', message:''})
+// // })
 
-//Route for search by Serial Number results to be displayed
-router.post('/cardSearchResultSN', function(req,res){
+// //Route for search by Serial Number results to be displayed
+// router.post('/cardSearchResultSN', function(req,res){
+//     var search = req.body
+//      Card.find({serialNumber: {$regex: search.searchWord, $options: 'i'}},
+//          function(err,response){
+//              res.render('pages/cardSearchResult', {banner: 'Search Results', search,response, message:''})
+//          }).limit(20)
+//  })
+ //###################################################################################################
+ router.post('/cardSearchResult', function(req,res){
     var search = req.body
-     Card.find({serialNumber: {$regex: search.searchWord, $options: 'i'}},
-         function(err,response){
-             res.render('pages/cardSearchResult', {banner: 'Search Results', search,response, message:''})
-         }).limit(20)
- })
- 
+    Card.find({partNumber: {$regex: search.searchWord, $options: 'i'}},
+        function(err,docs){
+            console.log(docs)
+            if (docs.length > 0){
+                res.render('pages/cardSearchResult', {banner: 'Search Results', search,docs, message:''})
+                console.log("partnumber")
+            }
+            else {
+                Card.find({serialNumber: {$regex: search.searchWord, $options: 'i'}},
+                    function(err,docs){
+                        res.render('pages/cardSearchResult', {banner: 'Search Results', search,docs, message:''})
+                        console.log("serialnumber")
+                    }).limit(5) 
+                }}).limit(20)          
+})
  //Route for search by bin Number
  router.get('/cardSearchBin', function(req,res){
 	res.render('pages/cardSearchBin', {banner: 'Search By Bin Number', message:''})
@@ -160,33 +163,6 @@ router.post('/cardBinMove', function(req,res){
     });
     res.redirect('/cardSearchBin')
 })
-
-//TESTINGTESTINGTESTINGTESTINGTESTING
-// router.post('/cardBinMove', function(req,res){
-//     var list = req.body.selected
-//     console.log(list)
-//     let newarray = list.split(',')
-//     console.log(newarray)
-
-//     var newLocation = req.body.newBinLocation
-//     console.log(newLocation)
-
-//     newarray.forEach(myFunction);
-//     function myFunction(item){
-//         Card.findOneAndUpdate({_id:item}, {binLocation:newLocation},
-//             function (err, docs) { 
-//                 if (docs == null){ 
-//                     // res.render('pages/cardEdit', {banner: 'Search Results to Update Legacy Record', addedit, message:'Did not update record'}) 
-//                 } else { 
-//                     // res.redirect('/cardLogin/cardAdmin') 
-//                     console.log(docs)
-//                 } 
-//             }
-//         )
-//     } 
-//     res.redirect('/cardSearchBin')
-// })
-
 
 //Route for items to be removed from the legacy database (Admin page) and inserts into a deleted table
 router.get('/del/:id/delete',function(req,res){

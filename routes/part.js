@@ -7,19 +7,6 @@ const RemovedPart = require('../models/RemovedPart')
 const User = require('../models/User')
 
 //Route for parts search home page 
-// router.get('/', function(req,res){
-    
-//     let ip = req.ip
-//     let date = new Date().toLocaleString();
-//     if(ip == `::ffff:`+address){
-//         res.render('pages/partHomeWithAdmin',{banner:'Part Search With Admin', message:''})
-//     }
-//     else{
-//         res.render('pages/partHome', {banner: 'Part Search', message:''})
-//     }
-//     console.log(`Parts -> by ${ip} at ${date}`)
-// })
-
 router.get('/', async function(req,res){
     try {
     let userip = req.ip
@@ -36,93 +23,45 @@ router.get('/', async function(req,res){
     } catch (error){console.log(error)}
 })
 
-//Route for search by Part Number results to be displayed
-// router.post('/partSearchResult', function(req,res){
-//         var search = req.body
-//         let ip = req.ip
-//         let date = new Date().toLocaleString()
-//         if (ip == '::ffff:'+address){
-//             console.log(`Jeffro -> by ${ip} at ${date}`)
-//             Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
-//             function(err,response){
-//                 res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,response, message:''})
-//             }).limit(20)
-//             } else {
-//                 console.log(`Parts -> by ${ip} at ${date}`)
-//                 Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
-//             function(err,response){
-//                 res.render('pages/partSearchResult', {banner: 'Search Results', search,response, message:''})
-//             }).limit(20)
-//             }
-//         })
+//Route for search by Part Number and search by LV number results to be displayed
 
 router.post('/partSearchResult', async function(req,res){
-    try {
-    var search = req.body
-    let userip = req.ip
-    let date = new Date().toLocaleString();
-    let token = await User.exists({ip:userip})
-
-    if (token == true){
-        Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
-            function(err,response){
-                res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,response, message:''})
-            }).limit(20)
-            } else {
-                console.log(`Parts -> by ${userip} at ${date}`)
-                Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
-            function(err,response){
-                res.render('pages/partSearchResult', {banner: 'Search Results', search,response, message:''})
-            }).limit(20)
-        }
-    } catch (error){console.log(error)}
-})
-//Route for parts search by LV number
-router.get('/partHomeLV', function(req,res){
-	res.render('pages/partHomeLV', {banner: 'Search By "LV" Number', message:''})
-})
-
-//Route for search by LV Number results to be displayed
-// router.post('/partSearchResultLV', function(req,res){
-//         var search = req.body
-//         let ip = req.ip
-//         let date = new Date().toLocaleString()
-//         if (ip == '::ffff:'+address){
-//             console.log(`Jeffro -> by ${ip} at ${date}`)
-//             Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
-//             function(err,response){
-//                 res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,response, message:''})
-//             }).limit(20)
-//             } else {
-//                 console.log(`Parts -> by ${ip} at ${date}`)
-//                 Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
-//             function(err,response){
-//                 res.render('pages/partSearchResult', {banner: 'Search Results', search,response, message:''})
-//             }).limit(20)
-//             }
-// })
-
-//TESTTESTTESTTEST
-router.post('/partSearchResultLV', async function(req,res){
-    try {
-    var search = req.body
-    let userip = req.ip
-    let date = new Date().toLocaleString();
-    let token = await User.exists({ip:userip})
-
-    if (token == true){
-        Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
-            function(err,response){
-                res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,response, message:''})
-            }).limit(20)
-            } else {
-                console.log(`Parts -> by ${userip} at ${date}`)
-                Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
-            function(err,response){
-                res.render('pages/partSearchResult', {banner: 'Search Results', search,response, message:''})
-            }).limit(20)
-        }
-    } catch (error){console.log(error)}
+    try{
+        var search = req.body
+        let userip = req.ip
+        let date = new Date().toLocaleString();
+        let token = await User.exists({ip:userip})
+        if (token = true){
+            Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
+                function(err,docs){
+                if (docs.length > 0){
+                    console.log("admin stocked as")
+                    res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,docs, message:''})
+                }
+                else {
+                    Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
+                        function(err,docs){
+                            res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,docs, message:''})
+                            console.log("admin sap number")
+                        })
+                    }}).limit(20) 
+        } else{
+            Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
+                function(err,docs){
+                console.log(docs)
+                if (docs.length > 0){
+                    console.log("stocked as")
+                    res.render('pages/partSearchResult', {banner: 'Search Results', search,docs, message:''})
+                }
+                else {
+                    Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
+                        function(err,docs){
+                            res.render('pages/partSearchResult', {banner: 'Search Results', search,docs, message:''})
+                            console.log("sap number")
+                        })
+                    }}).limit(20) 
+        }  
+    } catch (error){console.log(error)}     
 })
 
 //Route to add parts
