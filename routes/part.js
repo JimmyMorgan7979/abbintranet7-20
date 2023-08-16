@@ -31,7 +31,8 @@ router.post('/partSearchResult', async function(req,res){
         let userip = req.ip
         let date = new Date().toLocaleString();
         let token = await User.exists({ip:userip})
-        if (token = true){
+        console.log(`part result admin token check value is ------> ${token}`)
+        if (token == true){
             Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
                 function(err,docs){
                 if (docs.length > 0){
@@ -48,7 +49,7 @@ router.post('/partSearchResult', async function(req,res){
         } else{
             Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
                 function(err,docs){
-                console.log(docs)
+                //console.log(docs)
                 if (docs.length > 0){
                     console.log("stocked as")
                     res.render('pages/partSearchResult', {banner: 'Search Results', search,docs, message:''})

@@ -28,7 +28,7 @@ router.get('/', async function(req,res){
     var search = req.body
     Card.find({partNumber: {$regex: search.searchWord, $options: 'i'}},
         function(err,docs){
-            console.log(docs)
+            //console.log(docs)
             if (docs.length > 0){
                 res.render('pages/cardSearchResult', {banner: 'Search Results', search,docs, message:''})
                 console.log("partnumber")

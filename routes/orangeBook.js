@@ -15,7 +15,7 @@ router.post('/orangeBookSearchResult', function(req,res){
     var search = req.body
     OBook.find({BoardName: {$regex: search.searchWord, $options: 'i'}},
         function(err,docs){
-            console.log(docs)
+            //console.log(docs)
             if (docs.length > 0){
                 console.log("Orange book Board Name")
                 res.render('pages/orangeBookSearchResult', {banner: 'Search Results', search,docs, message:''})

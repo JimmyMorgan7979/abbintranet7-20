@@ -17,11 +17,11 @@ router.post('/mdbResults', function(req,res) {
     var search = req.body;
     console.log(search.searchword)
     if(!search.searchword){
-        res.render('pages/mdbHome.ejs',{banner: 'Models Database', message: " ** Please enter a search value ** "});
+        res.render('pages/mdbHome',{banner: 'Models Database', message: " ** Please enter a search value ** "});
     }else{
         models.find({modelnumber:{$regex: search.searchword,$options:"i"}},
         function(err,docs){
-            console.log(docs)
+            //console.log(docs)
             res.render('pages/mdbresults.ejs', {message:"", banner: 'Models Database Results', docs})
 }).limit(12)}})
 
