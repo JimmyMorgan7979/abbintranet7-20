@@ -53,9 +53,10 @@
                                 <strong class="pr-2">Notes: </strong> <%= item.notes %><br>
                             <% } %>
                             <input type='hidden', name='searchWord', value='<%=item.stockedAS%>'>
-                            <button class= "btn btn-primary mt-2" type='submit'>Edit Record</button>
-                            
+                            <!-- <button class= "btn btn-primary mt-2" type='submit'>Edit Record</button> -->
+                            <button class="btn btn-secondary m-2" id= '<%= item.sapNumber %>' disabled>Edit Record</button>
                         </form>
+                        <button class="btn btn-warning m-2"  onclick="editEnable('<%= item.sapNumber %>')">Enable Edit</button>
                     </li>
                 <% }); %>
             </ol>   
@@ -68,3 +69,6 @@
         <!--Spacing--> 
     </div>
 </div>
+
+<!-- script for admin -->
+<script src="/static/scripts/admin.js"></script>  

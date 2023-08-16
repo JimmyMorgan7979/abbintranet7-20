@@ -7,61 +7,35 @@ const RemovedPart = require('../models/RemovedPart')
 const User = require('../models/User')
 
 //Route for parts search home page 
-router.get('/', async function(req,res){
+router.get('/', function(req,res){
     try {
-    let userip = req.ip
-    let date = new Date().toLocaleString();
-    let token = await User.exists({ip:userip})
-
-    if (token == true){
-        console.log(`Part Admin Access by ${userip}`)
+        let userip = req.ip
+        let date = new Date().toLocaleString();
+        console.log(`Part Admin Access by ${userip} at ${date}`)
         res.render('pages/partHomeWithAdmin',{banner:'Part Search With Admin', message:''})
-    }else {
-        console.log(`Parts -> By ${userip} at ${date}`)
-        res.render('pages/partHome', {banner: 'Part Search', message:''})
-    }
     } catch (error){console.log(error)}
 })
 
 //Route for search by Part Number and search by LV number results to be displayed
 
-router.post('/partSearchResult', async function(req,res){
+router.post('/partSearchResult', function(req,res){
     try{
         var search = req.body
         let userip = req.ip
         let date = new Date().toLocaleString();
-        let token = await User.exists({ip:userip})
-        console.log(`part result admin token check value is ------> ${token}`)
-        if (token == true){
-            Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
-                function(err,docs){
-                if (docs.length > 0){
-                    console.log("admin stocked as")
-                    res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,docs, message:''})
-                }
-                else {
-                    Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
-                        function(err,docs){
-                            res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,docs, message:''})
-                            console.log("admin sap number")
-                        })
-                    }}).limit(20) 
-        } else{
-            Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
-                function(err,docs){
-                //console.log(docs)
-                if (docs.length > 0){
-                    console.log("stocked as")
-                    res.render('pages/partSearchResult', {banner: 'Search Results', search,docs, message:''})
-                }
-                else {
-                    Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
-                        function(err,docs){
-                            res.render('pages/partSearchResult', {banner: 'Search Results', search,docs, message:''})
-                            console.log("sap number")
-                        })
-                    }}).limit(20) 
-        }  
+        Part.find({stockedAS: {$regex: search.searchWord, $options: 'i'}},
+            function(err,docs){
+            if (docs.length > 0){
+                console.log("admin stocked as")
+                res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,docs, message:''})
+            }
+            else {
+                Part.find({sapNumber: {$regex: search.searchWord, $options: 'i'}},
+                    function(err,docs){
+                        res.render('pages/partAdminSearchResult', {banner: 'Search Results', search,docs, message:''})
+                        console.log("admin sap number")
+                    })
+                }}).limit(20) 
     } catch (error){console.log(error)}     
 })
 

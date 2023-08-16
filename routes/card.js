@@ -8,19 +8,12 @@ const RemovedCard = require('../models/RemovedCard')
 const User = require('../models/User')
 
 // Route for home page "Legacy Search"
-router.get('/', async function(req,res){
+router.get('/', function(req,res){
     try {
     let userip = req.ip
     let date = new Date().toLocaleString();
-    let token = await User.exists({ip:userip})
-
-    if (token == true){
-        console.log(`Admin Access by ${userip}`)
-        res.render('pages/cardHomeWithAdmin',{banner: "Legacy Search with Admin", message: ""})
-    }else {
-        console.log(`Legacy -> By ${userip} at ${date}`)
-        res.render('pages/cardHome',{banner: "Legacy Search", message: ""})
-    }
+    console.log(`Admin Access by ${userip}`)
+    res.render('pages/cardHomeWithAdmin',{banner: "Legacy Search with Admin", message: ""})
     } catch (error){console.log(error)}
 })
 //Route for search by Model Number results  to be displayed

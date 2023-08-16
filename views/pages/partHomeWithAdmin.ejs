@@ -16,11 +16,15 @@
                 </small>
                 <input class="form-control my-3" autofocus type="text" name="searchWord" placeholder="Enter a search value" />
                 <button class="btn btn-danger m-2" type="submit">Submit</button>
-                <a class="btn btn-success m-2" href="/partHome/partAdd">Add Part to DB</a>
             </div>
         </form>
+        <button class="btn btn-warning mx-3" onclick="addPartEnable()">Enable Add Part</button>
+        <a href="/partHome/partAdd"><button class="btn btn-secondary mx-3" disabled id="addPart">Add Part to DB</button></a> 
     </div>
     <div class="col-sm">
         <!--Spacing--> 
     </div>
 </div>
+
+<!-- script for admin -->
+<script src="/static/scripts/admin.js"></script>  

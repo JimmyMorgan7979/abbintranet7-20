@@ -2,6 +2,7 @@
     <div class="col-sm">
         <!--Spacing--> 
     </div>
+
     <div class="col-sm-6">
         <form action='/cardSearchResult', method='POST',name = "form">
             <div class="form-group p-2">
@@ -15,12 +16,26 @@
                 </p>
                 <input class="form-control my-3" autofocus type='text' name='searchWord' placeholder= 'Enter a search value'></input>
                 <button class="btn btn-danger m-2" type='submit'>Submit</button> 
-                <a type='button' class="btn btn-primary m-2"  href="/cardAdd">Add Card to Legacy</a>
             </div>
         </form> 
+    </div>
+
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <!--Spacing--> 
+    </div>
+    <div class="col-sm-6">
+        <button class="btn btn-warning mx-3"  onclick= addEnable()>Enable Add</button>
+        <a href="/cardAdd"><button class="btn btn-secondary" id="addCard" disabled>Add Card to Legacy</button></a>
     </div>
     <div class="col-sm">
         <!--Spacing--> 
     </div>
 </div>
-        
+
+<!-- script for admin -->
+<script src="/static/scripts/admin.js"></script>  
