@@ -72,6 +72,7 @@ app.use('/', require('./routes/card.js'))
 app.use('/partHome', require('./routes/part.js'))
 app.use('/mdb', require('./routes/mdb.js'))
 app.use('/orangeBookHome', require('./routes/orangeBook.js'))
+app.use('/shippers', require('./routes/shippers.js'))
 
 
 
